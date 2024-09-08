@@ -1,0 +1,10 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+    "strict": true,
+    "paths": {
+      "expo-lut-filter": ["../src/index"],
+      "expo-lut-filter/*": ["../src/*"]
+    }
+  }
+}
