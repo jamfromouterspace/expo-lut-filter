@@ -5,16 +5,12 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 
 export default function App() {
   const [inputUri, setInputUri] = useState<null | string>(null);
-  const [outputUri, setOutputUri] = useState<null | string>(
-    "file:///var/mobile/Containers/Data/Application/45F06407-B93F-4969-850D-AA7E7233AFAD/Library/Caches/669CC634-8C03-4C11-A28E-030CADC7D040.png",
-  );
-  const [outputUri2, setOutputUri2] = useState<null | string>(
-    "file:///var/mobile/Containers/Data/Application/45F06407-B93F-4969-850D-AA7E7233AFAD/Library/Caches/5D8A3109-2C20-4FC3-8C01-0959EBEACCB9.png",
-  );
+  const [outputUri, setOutputUri] = useState<null | string>(null);
+  const [outputUri2, setOutputUri2] = useState<null | string>(null);
 
   const loadInputImage = async () => {
     const inputImage = await Asset.fromModule(
-      require("./assets/inputImage2.png"),
+      require("./assets/inputImage.png"),
     ).downloadAsync();
     console.log("inputImage.localUri", inputImage.localUri);
     setInputUri(inputImage.localUri);
@@ -69,13 +65,13 @@ export default function App() {
         />
       ) : null}
       <Text>After:</Text>
-      {outputUri ? (
+      {/* {outputUri ? (
         <Image
           key={outputUri}
           source={{ uri: outputUri ?? "" }}
           style={{ width: 200, aspectRatio: "1/1", marginBottom: 10 }}
         />
-      ) : null}
+      ) : null} */}
       {outputUri2 ? (
         <Image
           key={outputUri2}
