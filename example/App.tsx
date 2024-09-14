@@ -10,7 +10,7 @@ export default function App() {
 
   const loadInputImage = async () => {
     const inputImage = await Asset.fromModule(
-      require("./assets/inputImage.png"),
+      require("./assets/inputImage.jpg"),
     ).downloadAsync();
     console.log("inputImage.localUri", inputImage.localUri);
     setInputUri(inputImage.localUri);

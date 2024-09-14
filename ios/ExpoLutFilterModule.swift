@@ -30,12 +30,12 @@ public class ExpoLutFilterModule: Module {
                 throw InputError.failedToLoadLUT
             }
             let lutImageSource = ImageSource(cgImage: lut!)
-            let input = loadCGImage(from: inputImageUri)
+            let input = loadCIImage(from: inputImageUri)
             if input == nil {
                 throw InputError.failedToLoadInputImage
             }
             let filter = FilterColorCube(identifier: UUID().uuidString, lutImage: lutImageSource, dimension: lutDimension)
-            let outputCI = filter.apply(to: CIImage(cgImage: input!))
+            let outputCI = filter.apply(to: input!)
             let outputUri = saveCIImageToCache(outputCI)
             return outputUri?.absoluteString
         }
@@ -52,6 +52,7 @@ public class ExpoLutFilterModule: Module {
             print("Failed to render CGImage from CIImage")
             return nil
         }
+        
         
         // Convert CGImage to UIImage (optional but simplifies saving)
         let uiImage = UIImage(cgImage: cgImage)
@@ -109,5 +110,20 @@ public class ExpoLutFilterModule: Module {
             print("Error loading image: \(error)")
             return nil
         }
+    }
+    func loadCIImage(from localURI: String) -> CIImage? {
+        guard let url = URL(string: localURI) else {
+            print("Invalid URL")
+            return nil
+        }
+
+        // Load the CIImage with orientation metadata applied
+        let options = [CIImageOption.applyOrientationProperty: true]
+        guard let ciImage = CIImage(contentsOf: url, options: options) else {
+            print("Unable to create CIImage from URL")
+            return nil
+        }
+
+        return ciImage
     }
 }
