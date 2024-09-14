@@ -1,6 +1,6 @@
 {
   "name": "expo-lut-filter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Apply LUT filters to images, programmatically",
   "main": "build/index.js",
   "types": "build/index.d.ts",
