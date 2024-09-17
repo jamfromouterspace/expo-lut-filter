@@ -37,6 +37,7 @@ export default function App() {
     console.log("lut64.localUri", lut64.localUri);
     const outputUri2 = await ExpoLutFilter.applyLUT(
       inputUri!,
+      "test",
       lut64.localUri!,
       64,
     );
