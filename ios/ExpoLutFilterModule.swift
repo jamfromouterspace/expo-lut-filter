@@ -22,7 +22,7 @@ public class ExpoLutFilterModule: Module {
         
         // Defines a JavaScript function that always returns a Promise and whose native code
         // is by default dispatched on the different thread than the JavaScript runtime runs on.
-        AsyncFunction("applyLUT") { (inputImageUri: String, filterId: String, lutUri: String, lutDimension: Int) in
+        AsyncFunction("applyLUT") { (inputImageUri: String, filterId: String, lutUri: String, lutDimension: Int, compression: Float) in
             let lut = loadCGImage(from: lutUri)
             enum InputError: Error {
                 case failedToLoadLUT
@@ -44,7 +44,7 @@ public class ExpoLutFilterModule: Module {
                 filterMap[filterId] = filter
             }
             let outputCI = filter.apply(to: input!)
-            let outputUri = saveCIImageToCache(outputCI)
+            let outputUri = saveCIImageToCache(outputCI, compressionQuality: CGFloat(compression))
             return outputUri?.absoluteString
         }
     }
