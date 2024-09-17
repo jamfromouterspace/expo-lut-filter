@@ -4,11 +4,13 @@ import ExpoLutFilterModule from "./ExpoLutFilterModule";
 
 export async function applyLUT(
   inputImageUri: string,
+  filterId: string,
   lutUri: string,
   lutDimension = 8, // 8 or 16 or 64 typically
 ) {
   return await ExpoLutFilterModule.applyLUT(
     inputImageUri,
+    filterId,
     lutUri,
     lutDimension,
   );
