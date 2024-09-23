@@ -8,6 +8,7 @@ export async function applyLUT(
   lutUri: string,
   lutDimension = 8, // 8 or 16 or 64 typically
   compression?: number, // 0.0 to 1.0
+  withGrain?: boolean,
 ) {
   return await ExpoLutFilterModule.applyLUT(
     inputImageUri,
@@ -15,5 +16,19 @@ export async function applyLUT(
     lutUri,
     lutDimension,
     compression ?? 0.8,
+    withGrain ?? false,
   );
+}
+
+export async function setGrainImage(grainImageUri: string) {
+  return await ExpoLutFilterModule.setGrainImage(grainImageUri);
+}
+
+export function setGrainOpacity(grainOpacity: number) {
+  return ExpoLutFilterModule.setGrainOpacity(grainOpacity);
+}
+
+/** See valid blend modes: https://developer.apple.com/library/archive/documentation/GraphicsImaging/Reference/CoreImageFilterReference/index.html */
+export function setGrainBlendMode(blendMode: string) {
+  return ExpoLutFilterModule.setGrainBlendMode(blendMode);
 }

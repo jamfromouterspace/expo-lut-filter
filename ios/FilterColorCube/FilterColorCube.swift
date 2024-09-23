@@ -48,7 +48,6 @@ public struct FilterColorCube : Hashable {
   }
 
   public func apply(to image: CIImage) -> CIImage {
-            
     #if false
             
     let f = ColorLookup()
